@@ -23,10 +23,12 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore -c Release
+      run: |
+        dotnet publish Flow.Launcher.Plugin.Add2Path -c Release -r win-x64 --no-self-contained
+        Compress-Archive -LiteralPath Flow.Launcher.Plugin.Add2Path/bin/Release/win-x64/publish -DestinationPath Flow.Launcher.Plugin.Add2Path/bin/Add2Path.zip -Force
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: Add2Path
-        path: ./Output/Release/Flow.Launcher.Plugin.Add2Path
+        path: Flow.Launcher.Plugin.Add2Path/bin/Release/win-x64/publish -DestinationPath Flow.Launcher.Plugin.Add2Path/bin/Add2Path.zip
 
