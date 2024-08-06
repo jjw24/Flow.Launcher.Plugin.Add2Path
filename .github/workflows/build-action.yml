@@ -30,10 +30,10 @@ jobs:
     - name: Build
       run: |
         dotnet publish 'Flow.Launcher.Plugin.Add2Path.csproj' -c Release -r win-x64 --no-self-contained -o "Add2Path-${{steps.version.outputs.prop}}"
-        7z a -tzip "Add2Path-${{steps.version.outputs.prop}}.zip" "./Add2Path-${{steps.version.outputs.prop}}/*"
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: Add2Path
-        path: 'Add2Path-${{steps.version.outputs.prop}}.zip'
+        path: 'Add2Path-${{steps.version.outputs.prop}}'
 
+# 7z a -tzip "Add2Path-${{steps.version.outputs.prop}}.zip" "./Add2Path-${{steps.version.outputs.prop}}/*"
