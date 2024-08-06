@@ -20,8 +20,6 @@ jobs:
       with:
         dotnet-version: 7.0.x
         # cache: true
-    - name: Restore dependencies
-      run: dotnet restore
     - name: Build
       run: |
         dotnet publish Flow.Launcher.Plugin.Add2Path -c Release -r win-x64 --no-self-contained
