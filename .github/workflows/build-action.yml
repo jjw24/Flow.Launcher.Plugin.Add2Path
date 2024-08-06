@@ -21,11 +21,11 @@ jobs:
         dotnet-version: 7.0.x
         # cache: true
     - name: get version
-        id: version
-        uses: notiz-dev/github-action-json-property@release
-        with: 
-          path: 'plugin.json'
-          prop_path: 'Version'
+      id: version
+      uses: notiz-dev/github-action-json-property@release
+      with: 
+        path: 'plugin.json'
+        prop_path: 'Version'
     - run: echo ${{steps.version.outputs.prop}}
     - name: Build
       run: |
