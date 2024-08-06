@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-        cache: true
+        # cache: true
     - name: Build
       run: dotnet build --no-restore -c Release
     - name: Upload Artifact
