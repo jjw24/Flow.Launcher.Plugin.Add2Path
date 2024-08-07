@@ -38,7 +38,7 @@ jobs:
         uses: actions/setup-dotnet@v3
         with:
           dotnet-version: 7.0.x
-      - name: get version
+      - name: Get version
         id: version
         uses: notiz-dev/github-action-json-property@release
         with: 
@@ -51,8 +51,9 @@ jobs:
           7z a -tzip "Add2Path-${{steps.version.outputs.prop}}.zip" "./Add2Path-${{steps.version.outputs.prop}}/*"
       - name: Publish
         uses: softprops/action-gh-release@v1
+        if: steps.publish-release.outputs.required == 'true'
         with:
-          files: "Add2Path*"
+          files: "Add2Path-${{steps.version.outputs.prop}}.zip"
           tag_name: "v${{steps.version.outputs.prop}}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
