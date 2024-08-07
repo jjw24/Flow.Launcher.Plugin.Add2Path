@@ -19,7 +19,7 @@ jobs:
       uses: actions/setup-dotnet@v3
       with:
         dotnet-version: 7.0.x
-        # cache: true
+        cache: true
     - name: get version
       id: version
       uses: notiz-dev/github-action-json-property@release
@@ -35,5 +35,3 @@ jobs:
       with:
         name: Add2Path
         path: 'Add2Path-${{steps.version.outputs.prop}}'
-
-# 7z a -tzip "Add2Path-${{steps.version.outputs.prop}}.zip" "./Add2Path-${{steps.version.outputs.prop}}/*"
