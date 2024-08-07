@@ -47,7 +47,7 @@ jobs:
       - run: echo ${{steps.version.outputs.prop}}
       - name: Build
         run: |
-          dotnet publish 'Flow.Launcher.Plugin.Add2Path.csproj' -r win-x64  -c Release -o "Flow.Launcher.Plugin.Add2Path.zip"
+          dotnet publish 'Flow.Launcher.Plugin.Add2Path.csproj' -r win-x64  -c Release -o "Flow.Launcher.Plugin.Add2Path"
           7z a -tzip "Add2Path-${{steps.version.outputs.prop}}.zip" "./Add2Path-${{steps.version.outputs.prop}}/*"
       - name: Publish
         uses: softprops/action-gh-release@v1
