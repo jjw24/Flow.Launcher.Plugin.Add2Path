@@ -1,4 +1,4 @@
-name: build
+name: Build Pull Request
 
 on:
   push:
@@ -10,28 +10,26 @@ on:
 
 jobs:
   build:
-
     runs-on: windows-latest
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v3
-      with:
-        dotnet-version: 7.0.x
-        cache: true
-    - name: get version
-      id: version
-      uses: notiz-dev/github-action-json-property@release
-      with: 
-        path: 'plugin.json'
-        prop_path: 'Version'
-    - run: echo ${{steps.version.outputs.prop}}
-    - name: Build
-      run: |
-        dotnet publish 'Flow.Launcher.Plugin.Add2Path.csproj' -c Release -r win-x64 --no-self-contained -o "Add2Path-${{steps.version.outputs.prop}}"
-    - name: Upload Artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: Add2Path
-        path: 'Add2Path-${{steps.version.outputs.prop}}'
+      - uses: actions/checkout@v3
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+      - name: get version
+        id: version
+        uses: notiz-dev/github-action-json-property@release
+        with: 
+          path: 'plugin.json'
+          prop_path: 'Version'
+      - run: echo ${{steps.version.outputs.prop}}
+      - name: Build
+        run: |
+          dotnet publish 'Flow.Launcher.Plugin.Add2Path.csproj' -c Release -r win-x64 --no-self-contained -o "Add2Path-${{steps.version.outputs.prop}}"
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: Add2Path
+          path: 'Add2Path-${{steps.version.outputs.prop}}'
