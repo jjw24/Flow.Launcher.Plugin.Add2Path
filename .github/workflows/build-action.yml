@@ -1,12 +1,11 @@
 name: Build Pull Request
 
 on:
-  push:
-    paths-ignore: 
-      # - .github/workflows/*
-      - .gitignore
-      - idea/*
   pull_request:
+    paths-ignore: 
+        # - .github/workflows/*
+        - .gitignore
+        - idea/*
 
 jobs:
   build:
@@ -31,5 +30,5 @@ jobs:
       - name: Upload Artifact
         uses: actions/upload-artifact@v2
         with:
-          name: Add2Path
+          name: 'Add2Path-${{steps.version.outputs.prop}}'
           path: 'Add2Path-${{steps.version.outputs.prop}}'
